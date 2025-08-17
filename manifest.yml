@@ -1,7 +1,8 @@
 type: install
 id: rocket-chat-persistent
-version: 2.3 # Version incremented
+version: 2.3
 name: Rocket.Chat
+ssl: true
 
 globals:
   db_password: ${fn.password}
@@ -31,7 +32,7 @@ nodes:
 onInstall:
   - adjust-env-vars
 
-  - api [cp]: env.control.RestartNodes # <<< CORRECTED
+  - api [cp]: env.control.RestartNodes
   - api: env.control.ExecDockerRunCmd
     nodeId: ${nodes.cp.first.id}
   - cmd[cp]: |-
